@@ -44,3 +44,5 @@ backend/models/*.pkl
 .DS_Store
 Thumbs.db
 desktop.ini
+
+best_adgf_net.keras
