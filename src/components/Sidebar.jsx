@@ -52,9 +52,9 @@ const Sidebar = ({ isCollapsed = false, onToggle = () => {}, showChatbot = false
     { 
       icon: Sprout,
       label: 'Treatment',
-      path: '/fertilizers',
+      path: '/treatments',
       color: 'bg-white',
-      key: 'fertilizers',
+      key: 'treatments',
       iconClass: 'text-emerald-600 group-hover:text-emerald-700'
     },
     { 

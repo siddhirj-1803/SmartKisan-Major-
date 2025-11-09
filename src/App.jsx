@@ -12,6 +12,8 @@ import axios from 'axios';
 import { AppProvider, useApp } from './context/AppContext';
 import './App.css';
 import DetectionHistoryPage from './pages/DetectionHistoryPage';
+import CropsDiseasesPage from './pages/CropsDiseasesPage';
+import TreatmentsPage from './pages/TreatmentsPage';
 import ConnectFarmersPage from './pages/ConnectFarmersPage';
 import { NotificationProvider, useNotifications } from './context/NotificationContext';
 import NotificationManager, { NotificationActions } from './components/NotificationManager';
@@ -769,13 +771,13 @@ function AppContent() {
             />
             <Route 
               path="/crops-diseases" 
-              element={
-                <div className={`main-content-layout ${isSidebarCollapsed ? 'sidebar-collapsed' : ''} p-6`}>
-                  Crops and Diseases Library
-                </div>
-              } 
+              element={<CropsDiseasesPage isCollapsed={isSidebarCollapsed} />} 
             />
-            <Route path="/fertilizers" element={<div className={`main-content-layout ${isSidebarCollapsed ? 'sidebar-collapsed' : ''} p-6`}>Fertilizers</div>} />
+            <Route 
+              path="/treatments" 
+              element={<TreatmentsPage isCollapsed={isSidebarCollapsed} />} 
+            />
+            <Route path="/fertilizers" element={<Navigate to="/treatments" replace />} />
             <Route path="/connect-farmers" element={<ConnectFarmersPage isCollapsed={isSidebarCollapsed} />} />
             <Route 
               path="/connect-team" 
