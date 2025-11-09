@@ -1,5 +1,5 @@
 {
-  "name": "SmartKisan",
+  "name": "smart-kisan",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -19,7 +19,7 @@
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.11.17",
-    "SmartKisan": "file:",
+    "smart-kisan": "file:",
     "i18next": "^23.10.1",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.5.0",

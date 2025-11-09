@@ -3,10 +3,11 @@ import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import logoIcon from '../assets/images/leaf.png';
+import profileImage from '../assets/images/logo.jpg';
 import { useApp } from '../context/AppContext';
 import { useActionNotifications } from '../context/ActionNotificationContext';
 
-const PROFILE_IMAGE_URL = "https://t3.ftcdn.net/jpg/03/26/84/88/360_F_326848805_qtf1DQC7b5IOsOw0f4PhUV5ubr3W7Oho.jpg";
+const PROFILE_IMAGE_URL = profileImage;
 
 const ChatMessage = ({ message, isResponseAfterImage = false, index }) => {
   const isUser = message.type === 'user';
