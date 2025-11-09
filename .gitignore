@@ -29,9 +29,7 @@ yarn-error.log*
 
 # Project specific
 backend/temp_uploads
-backend/models/*.h5
-backend/models/*.pkl
-!backend/models/adgf_net.keras
+backend/models/
 
 # IDE
 .vscode/
@@ -44,6 +42,3 @@ backend/models/*.pkl
 .DS_Store
 Thumbs.db
 desktop.ini
-
-best_adgf_net.keras
-adgf_net.keras
