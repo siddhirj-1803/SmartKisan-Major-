@@ -82,6 +82,7 @@ class DiseasePredictor:
     def _preprocess_image(self, img_path):
         """Loads and preprocesses an image."""
         img = image.load_img(img_path, target_size=self.target_size)
+        img = img.convert('RGB')  # Explicitly convert to RGB
         img_array = image.img_to_array(img)
         return np.expand_dims(img_array, axis=0) / 255.0
 

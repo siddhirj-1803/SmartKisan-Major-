@@ -13,7 +13,7 @@ pandas
 
 # LLM Integration
 python-dotenv
-google-generativeai
+langchain-google-genai
 pillow
 
 # Production server (optional)

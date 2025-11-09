@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from disease_predict import analyze_image
-from groq_demo import generate_response
+from gemini_demo import generate_response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -124,15 +124,22 @@ def predict():
                 print(f"{crop}: {prob*100:.2f}%")
                 
             # Generate detailed explanation for the disease
-            prompt = (
-                f"What is {analysis_result['condition']} in {analysis_result['crop_type']} plants? Please provide a detailed response covering: "
-                f"1. Disease description and symptoms "
-                f"2. Spreadability "
-                f"3. Common causes "
-                f"4. Treatment methods "
-                f"5. Prevention measures"
+            system_prompt = (
+                "You are an expert agricultural assistant. Your role is to provide a detailed, clear, and actionable guide "
+                "on plant diseases. A user has uploaded an image, and the system has identified a potential disease. "
+                "Your task is to explain it comprehensively."
             )
-            explanation = generate_response(prompt)
+            user_prompt = (
+                f"The system has identified the disease as **{analysis_result['condition']}** in a **{analysis_result['crop_type']}** plant "
+                f"with a confidence of {analysis_result['confidence']:.2%}. "
+                "Please provide a detailed response covering the following points in a structured and easy-to-read format:\n\n"
+                "1.  **Disease Description**: What is this disease, and what are its key characteristics and common symptoms? "
+                "2.  **Spreadability**: How does this disease typically spread (e.g., through wind, water, insects, contaminated tools)? "
+                "3.  **Common Causes**: What are the primary environmental or cultivation factors that lead to its development? "
+                "4.  **Treatment Methods**: What are the most effective chemical and organic treatment options available? "
+                "5.  **Prevention Measures**: What proactive steps can a farmer take to prevent this disease in the future?"
+            )
+            explanation = generate_response(system_prompt, user_prompt)
             
             # Clean up the uploaded image file after processing
             try:
@@ -215,8 +222,13 @@ def chat():
             }), 200
             
         # Generate a response for disease-related queries
-        prompt = f"Regarding {disease} disease in Rice plants: {user_message}"
-        response = generate_response(prompt)
+        system_prompt = (
+            "You are an expert agricultural assistant. The user has already received an initial diagnosis "
+            f"for a plant disease, which was identified as **{disease}**. They are now asking a follow-up question. "
+            "Provide a concise and helpful answer based on their query."
+        )
+        user_prompt = f"Regarding the **{disease}** disease in rice plants, my question is: {user_message}"
+        response = generate_response(system_prompt, user_prompt)
         return jsonify({
             'message': response,
             'error': False
