@@ -52,7 +52,7 @@ SmartKisan/
 
 SmartKisan uses a custom Convolutional Neural Network (CNN) architecture with an Adaptive Lesion Module for improved disease detection accuracy. The model:
 
-- Supports 60+ different plant diseases across 11 crop types
+- Supports 25+ different plant diseases across 11 crop types
 - Utilizes adaptive focal loss for handling class imbalance
 - Implements attention mechanisms to focus on disease-specific regions
 - Achieves high accuracy through transfer learning techniques
